@@ -1,0 +1,8 @@
+name: pvpEvent
+version: '${project.version}'
+main: com.x_tornado10.pvpevent.PvpEvent
+api-version: '1.20'
+prefix: [PVP-EVENT] 
+authors: [x_Tornado10]
+description: PvP-Event plugin
+website: https://www.crafti-servi.com/

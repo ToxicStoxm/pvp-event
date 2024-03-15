@@ -1,0 +1,8 @@
+#Settings for debugging
+
+
+
+#Only enable these settings if your told to do so by support
+Debugging:
+  logger-basic-debug: false
+  logger-core-debugging-verbose: false
