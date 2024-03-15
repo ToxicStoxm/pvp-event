@@ -3,14 +3,12 @@ package com.x_tornado10.pvpevent;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Set;
-
 public class Settings {
 
     private FileConfiguration conf = null;
 
     private BukkitRunnable dumpTask = null;
-    private PvpEvent plugin;
+    private final PvpEvent plugin;
 
     public Settings() {
         plugin = PvpEvent.getInstance();
@@ -37,6 +35,8 @@ public class Settings {
     }
 
     public void dump() {
+
+
     }
 
     public void reload(FileConfiguration conf) {

@@ -5,17 +5,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class PvpEvent extends JavaPlugin {
-    public static Logger logger;
+    private static MessageHandler logger;
     private long start;
     private static PvpEvent instance;
-    public final Settings settings = new Settings();
+    public static Settings settings = new Settings();
 
     @Override
     public void onLoad() {
         // Starting timestamp
         start = System.currentTimeMillis();
-        logger = getLogger();
+        Logger logger = getLogger();
+        PvpEvent.logger = new MessageHandler(logger);
         instance = this;
+        saveDefaultConfig();
         settings.reload(getConfig());
     }
 
@@ -24,10 +26,9 @@ public final class PvpEvent extends JavaPlugin {
         // Plugin startup logic
 
 
-
         // calculating and displaying time it took to enable
         long finalTime = System.currentTimeMillis() - start;
-        logger.info("Successfully enabled! (took" + (int)finalTime/1000 + "," + finalTime % 1000 + "s)");
+        logger.send("Successfully enabled! (took" + (int)finalTime/1000 + "," + finalTime % 1000 + "s)", log_type.INFO, log_level.NORMAL);
     }
 
     @Override
@@ -35,14 +36,18 @@ public final class PvpEvent extends JavaPlugin {
         // Plugin shutdown logic
         // End Settings dumpTask, dump manually if not running
         if(!settings.endDumpTask()) settings.dump();
-        logger.info("Shutting down. Goodbye!");
+        logger.send("Shutting down. Goodbye!", log_type.INFO, log_level.NORMAL);
     }
 
     // main instance getter
     public static PvpEvent getInstance() {
         if (instance == null) {
-            logger.severe("There was an error while trying to get an instance of the main class. Please restart the server to prevent any unwanted behaviour!");
+            logger.send("There was an error while trying to get an instance of the main class. Please restart the server to prevent any unwanted behaviour!", log_type.ERROR, log_level.NORMAL);
         }
         return instance;
+    }
+
+    public static MessageHandler getLog() {
+        return logger;
     }
 }
