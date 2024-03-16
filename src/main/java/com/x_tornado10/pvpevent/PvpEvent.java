@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class PvpEvent extends JavaPlugin {
-    private static MessageHandler logger;
+    private static LogHandler logger;
     private long start;
     private static PvpEvent instance;
     public static Settings settings = new Settings();
@@ -14,10 +14,15 @@ public final class PvpEvent extends JavaPlugin {
     public void onLoad() {
         // Starting timestamp
         start = System.currentTimeMillis();
+
+        // initialize plugin logger and message handler
         Logger logger = getLogger();
-        PvpEvent.logger = new MessageHandler(logger);
+        PvpEvent.logger = new LogHandler(logger);
+
         instance = this;
+        // save the default config if it does not exist
         saveDefaultConfig();
+        // load config values into memory
         settings.reload(getConfig());
     }
 
@@ -25,6 +30,10 @@ public final class PvpEvent extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
+        // start config dumping task. display error message if it fails
+        if (!settings.startDumpTask()) {
+            logger.send("Error with dump-task for config.yml! Please restart the server!", log_type.ERROR, log_level.NORMAL);
+        }
 
         // calculating and displaying time it took to enable
         long finalTime = System.currentTimeMillis() - start;
@@ -47,7 +56,8 @@ public final class PvpEvent extends JavaPlugin {
         return instance;
     }
 
-    public static MessageHandler getLog() {
+    // main getter for the plugin logger
+    public static LogHandler getLog() {
         return logger;
     }
 }

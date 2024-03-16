@@ -1,3 +1,13 @@
-Basic:
-  Errors:
-    Instance: "There was an error while trying to get an instance of the main class. Please restart the server to prevent any unwanted behaviour!"
+Messages:
+  NORMAL:
+    INFO:
+    WARNING:
+    ERROR:
+  DEBUG:
+    INFO:
+    WARNING:
+    ERROR:
+  DEBUG_VERBOSE:
+    INFO:
+    WARNING:
+    ERROR:
