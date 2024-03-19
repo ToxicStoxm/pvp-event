@@ -1,4 +1,6 @@
-package com.x_tornado10.pvpevent;
+package com.x_tornado10.pvpevent.log;
+
+import com.x_tornado10.pvpevent.PvpEvent;
 
 import javax.annotation.Nonnull;
 import java.util.logging.Logger;
@@ -19,7 +21,7 @@ public class LogHandler {
         switch (log_level) {
             case NORMAL -> log(message, log_type);
             case DEBUG -> {
-                if (PvpEvent.settings.getLogLevel().equals(log_level) || PvpEvent.settings.getLogLevel().equals(com.x_tornado10.pvpevent.log_level.DEBUG_VERBOSE)) log(message,log_type);
+                if (PvpEvent.settings.getLogLevel().equals(log_level) || PvpEvent.settings.getLogLevel().equals(com.x_tornado10.pvpevent.log.log_level.DEBUG_VERBOSE)) log(message,log_type);
             }
             case DEBUG_VERBOSE -> {
                 if (PvpEvent.settings.getLogLevel().equals(log_level)) log(message,log_type);

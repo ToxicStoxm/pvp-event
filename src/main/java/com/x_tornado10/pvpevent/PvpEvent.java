@@ -1,6 +1,13 @@
 package com.x_tornado10.pvpevent;
 
+import com.x_tornado10.pvpevent.config.Settings;
+import com.x_tornado10.pvpevent.listeners.JoinListener;
+import com.x_tornado10.pvpevent.log.LogHandler;
+import com.x_tornado10.pvpevent.log.log_level;
+import com.x_tornado10.pvpevent.log.log_type;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -12,6 +19,8 @@ public final class PvpEvent extends JavaPlugin {
     private long start;
     private static PvpEvent instance;
     public static Settings settings = new Settings();
+    private JoinListener joinListener;
+    private PluginManager pm;
 
     @Override
     public void onLoad() {
@@ -21,6 +30,8 @@ public final class PvpEvent extends JavaPlugin {
         // initialize plugin logger and message handler
         Logger logger = getLogger();
         PvpEvent.logger = new LogHandler(logger);
+
+        pm = Bukkit.getPluginManager();
 
         instance = this;
         // save the default config if it does not exist
@@ -37,6 +48,10 @@ public final class PvpEvent extends JavaPlugin {
         if (!settings.startDumpTask()) {
             logger.send("Error with dump-task for config.yml! Please restart the server!", log_type.ERROR, log_level.NORMAL);
         }
+
+        joinListener = new JoinListener();
+        pm.registerEvents(joinListener, this);
+
 
         // calculating and displaying time it took to enable
         long finalTime = System.currentTimeMillis() - start;

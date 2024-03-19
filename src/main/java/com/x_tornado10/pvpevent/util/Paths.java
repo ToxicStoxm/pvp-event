@@ -1,4 +1,4 @@
-package com.x_tornado10.pvpevent;
+package com.x_tornado10.pvpevent.util;
 
 // Hardcoded Path storage for config settings
 public final class Paths {

@@ -1,5 +1,10 @@
-package com.x_tornado10.pvpevent;
+package com.x_tornado10.pvpevent.config;
 
+import com.x_tornado10.pvpevent.PvpEvent;
+import com.x_tornado10.pvpevent.log.LogHandler;
+import com.x_tornado10.pvpevent.log.log_level;
+import com.x_tornado10.pvpevent.log.log_type;
+import com.x_tornado10.pvpevent.util.Paths;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 

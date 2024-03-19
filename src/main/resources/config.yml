@@ -10,6 +10,24 @@ PVP-Event:
     # Time for fighting when borders open (in seconds)
     # DEFAULT: 7200 (2 hours)
     PVP-Time: 7200
+  # Set the duration of each event phase.
+  # Each player has their own playtime limit above.
+  # After this time has passed the game will automatically go to next phase.
+  # Note: any equipment-time not used will automatically be negated
+  Event-Phases:
+    Duration:
+      # Over-World-Time (seconds)
+      # DEFAULT: 1209600 (2 weeks)
+      1-Equipment-Phase: 1209600
+      # Nether-Time (seconds)
+      # DEFAULT: 345600 (4 days)
+      2-Equipment-Phase: 345600
+      # PVP-Time (seconds)
+      # DEFAULT: 7200 (2 hours)
+      3-PVP-Phase: 7200
+    PVP-Settings:
+      disqualify-on-quit: false
+      disqualify-on-death: true
 
 # Settings for debugging
 # Only enable these settings if your told to do so by support
