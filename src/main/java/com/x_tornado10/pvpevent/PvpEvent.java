@@ -3,7 +3,6 @@ package com.x_tornado10.pvpevent;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.imageio.IIOException;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
