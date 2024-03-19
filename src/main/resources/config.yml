@@ -1,8 +1,18 @@
-#Settings for debugging
+# Main Plugin Settings
+PVP-Event:
+  # Time related settings
+  Time:
+    # Time for equipment periods (in seconds)
+    # DEFAULT: 86400 (24 hours)
+    Over-world-Time: 86400
+    # DEFAULT: 14400 (4 hours)
+    Nether-Time: 14400
+    # Time for fighting when borders open (in seconds)
+    # DEFAULT: 7200 (2 hours)
+    PVP-Time: 7200
 
-
-
-#Only enable these settings if your told to do so by support
+# Settings for debugging
+# Only enable these settings if your told to do so by support
 Debugging:
   logger-basic-debug: false
   logger-core-debugging-verbose: false

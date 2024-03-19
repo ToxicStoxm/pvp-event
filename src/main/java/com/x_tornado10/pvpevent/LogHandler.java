@@ -13,6 +13,7 @@ public class LogHandler {
 
     }
 
+    // check if debug or core debug modes are enabled
     public void send(String message, @Nonnull log_type log_type, @Nonnull log_level log_level) {
 
         switch (log_level) {
@@ -28,6 +29,12 @@ public class LogHandler {
 
     }
 
+    // shortcut for normal info messages
+    public void send(String message) {
+        log(message, log_type.INFO);
+    }
+
+    // check what log type the message is
     private void log(String message, log_type log_type) {
         switch (log_type) {
             case INFO -> logger.info(message);
@@ -35,6 +42,5 @@ public class LogHandler {
             case ERROR -> logger.severe(message);
         }
     }
-
 
 }

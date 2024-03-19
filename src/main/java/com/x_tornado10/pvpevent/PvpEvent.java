@@ -1,7 +1,11 @@
 package com.x_tornado10.pvpevent;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.imageio.IIOException;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public final class PvpEvent extends JavaPlugin {
@@ -37,7 +41,7 @@ public final class PvpEvent extends JavaPlugin {
 
         // calculating and displaying time it took to enable
         long finalTime = System.currentTimeMillis() - start;
-        logger.send("Successfully enabled! (took" + (int)finalTime/1000 + "," + finalTime % 1000 + "s)", log_type.INFO, log_level.NORMAL);
+        logger.send("Successfully enabled! (took" + (int)finalTime/1000 + "," + finalTime % 1000 + "s)");
     }
 
     @Override
@@ -45,7 +49,7 @@ public final class PvpEvent extends JavaPlugin {
         // Plugin shutdown logic
         // End Settings dumpTask, dump manually if not running
         if(!settings.endDumpTask()) settings.dump();
-        logger.send("Shutting down. Goodbye!", log_type.INFO, log_level.NORMAL);
+        logger.send("Shutting down. Goodbye!");
     }
 
     // main instance getter
@@ -59,5 +63,11 @@ public final class PvpEvent extends JavaPlugin {
     // main getter for the plugin logger
     public static LogHandler getLog() {
         return logger;
+    }
+    public boolean saveConfigValues(FileConfiguration conf) {
+        try {
+            conf.save(new File(getDataFolder() + "/config.yml"));
+        } catch (IOException e) {return false;}
+        return true;
     }
 }
